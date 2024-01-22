@@ -1,0 +1,80 @@
+
+.wrapper {
+    position:fixed;
+    bottom: 2%;
+    right: 1%;
+    z-index: 20;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 15px;
+    width: 5%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    background-color: #e1b3e5;
+}
+
+.wrapper .icon {
+    margin: 50%;
+    width: 60%;
+    height: auto;
+}
+
+
+.wrapper:hover {
+    background-color: #a24fea;
+    color: #ffffff;
+}
+
+
+#body {
+    background: #ebecf4;
+}
+
+#container {
+    margin-top: 1%;
+    justify-content: space-between;
+    align-items: start; /* Выравнивание элементов по центру по вертикали */
+}
+
+#buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.button-group {
+    margin: 1% 0%;
+    background: white;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between; /* Распределение пространства между кнопками */
+    align-items: center;
+}
+
+.button-group:hover {
+    background-color: #e1b3e5;
+}
+
+#buttons .btn {
+    margin: 1% 1%;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    width: 30%;
+    height: auto;
+    font-family: 'Brightwell Medium', sans-serif;
+    border: none;
+    outline: none;
+    background: #faf7f7;
+    border-radius: 20px;
+}
+#buttons .btn:hover {
+    background-color: #a24fea;
+}
