@@ -29,12 +29,6 @@ public class ControllerTimeTracking {
     }
 
 
-    @GetMapping("/check")
-    public String string() {
-        return "index";
-    }
-
-
 
 //    @GetMapping("/timetracking")
 //    @ResponseBody

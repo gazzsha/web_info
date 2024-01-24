@@ -19,6 +19,7 @@
 <div role="main" class="container">
     <div class="starter-template">
         <div id="container">
+            <hr class="hr-shadow">
             <div id="buttons" th:each="trns:${transferredPoints}">
                 <div class="button-group">
                     <button type="button" class="btn btn-outline-dark p-2"
@@ -31,10 +32,11 @@
                     </button>
                     <button type="button" class="btn btn-outline-dark p-2"
                             id="pointAmountButton">
-                        <span th:text="${trns.points}"></span>
+                        <span th:text="${trns.points}" ></span>
                     </button>
                 </div>
             </div>
+            <hr class="hr-shadow">
 
             <!--            <div class="card">-->
             <!--                <div class="card-body">-->
@@ -58,18 +60,22 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-
-                <h5 class="modal-title" id="exampleModalCenteredLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalCenteredLabel">Information</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <img class="icon" th:src="@{/images/transferpoint.svg}" alt="item icon">
+                <img class="icon" th:src="@{/images/transferpoint.svg}" alt="item icon" id="image-rec">
+                <h4 class="card-title">Transfer Points</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Peer-to-peer</h6>
+                <p class="card-text">
+                    Each feast is checked by another feast, each check costs 1 point.
+                    The table shows how many times one peer has checked the other.
+                </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
