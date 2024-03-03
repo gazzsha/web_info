@@ -1,40 +1,67 @@
 package com.school.web_info.service;
 
-import com.school.web_info.dao.PeerDAO;
+import com.school.web_info.dto.PeerDTO;
 import com.school.web_info.entity.Peer;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.school.web_info.exception.error.NotFoundException;
+import com.school.web_info.repository.PeerRepository;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
-public class PeerServiceImplementation implements PeerService{
-    @Autowired
-    PeerDAO peerDAO;
+@AllArgsConstructor
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+public class PeerServiceImplementation implements PeerService {
+
+
+    PeerRepository peerRepository;
+
     @Override
-    @Transactional
     public List<Peer> getAllPeers() {
-        return peerDAO.getAllPeers();
+        return peerRepository.findAll();
     }
 
     @Override
-    @Transactional
     public Peer getPeer(String nickname) {
-        return peerDAO.getPeer(nickname);
+        return peerRepository.getReferenceById(nickname);
     }
 
     @Override
-    @Transactional
-    public void savePeer(Peer peer) {
-        peerDAO.savePeer(peer);
+    public void savePeer(PeerDTO peerDTO) {
+        Peer peer = convertPeerDTOtoPeerEntity(peerDTO);
+        peerRepository.saveAndFlush(peer);
+    }
+
+    private Peer convertPeerDTOtoPeerEntity(PeerDTO peerDTO) {
+        String nickname = peerDTO.getNickname();
+        Optional<Peer> peer = peerRepository.findById(nickname);
+        Peer peerEntity = null;
+        if (peer.isPresent()) {
+            peerEntity = peerRepository.findById(nickname)
+                    .orElseThrow(
+                            () -> new NotFoundException(String.format("User with nickname %s not found",nickname))
+                    );
+            peerEntity.setBirthday(peerDTO.getBirthday());
+        } else {
+            peerEntity = Peer.builder()
+                    .nickname(peerDTO.getNickname())
+                    .birthday(peerDTO.getBirthday())
+                    .build();
+        }
+        return peerEntity;
     }
 
     @Override
-    @Transactional
     public void deletePeer(String nickname) {
-        peerDAO.deletePeer(nickname);
+        Peer peerFindByNickname = peerRepository.findById(nickname).orElseThrow(
+                () -> new NotFoundException(String.format("User with nickname %s not found",nickname))
+        );
+        peerRepository.delete(peerFindByNickname);
     }
 
 

@@ -4,7 +4,7 @@ CREATE
 CREATE
     USER student WITH PASSWORD 'student';
 
-GRANT CONNECT ON DATABASE web_info TO student
+GRANT CONNECT ON DATABASE web_info TO student;
 
 GRANT pg_read_all_data TO student;
 
