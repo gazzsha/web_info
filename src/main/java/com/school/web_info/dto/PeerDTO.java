@@ -1,6 +1,7 @@
 package com.school.web_info.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.school.web_info.validation.Birthday;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,9 +16,8 @@ import java.sql.Date;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PeerDTO {
-    @NotBlank
+    @NotBlank(message = "Не должно быть пустым")
     String nickname;
-
-    @Birthday
+    @Birthday(message = "Возраст peer'a 18+")
     Date birthday;
 }

@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
@@ -32,6 +33,8 @@ public class ControllerPeer {
 
     static final String DELETE_PEER = "/peer/{peerId}";
 
+    static final String GET_PEER = "/peer/{peerId}";
+
     @GetMapping(GET_PEERS)
     public String showAllPeers(Model model) {
         List<PeerDTO> peers = peerService.getAllPeers().stream()
@@ -44,34 +47,43 @@ public class ControllerPeer {
     }
 
     @PostMapping(path = SAVE_PEER)
+    @ResponseBody
     public ResponseEntity<?> savePeer(@Valid @RequestBody PeerDTO peer) {
-        peerService.savePeer(peer);
-        return new ResponseEntity<>(HttpStatus.OK);
+        var savedPeer = peerService.savePeer(peer);
+        PeerDTO peerDTO = PeerDTO.builder()
+                .nickname(savedPeer.getNickname())
+                .birthday(savedPeer.getBirthday())
+                .build();
+        return ResponseEntity.created(URI.create(SAVE_PEER)).body(peerDTO);
     }
 
     @PutMapping(UPDATE_PEER)
-    public String updatePeer(@Valid @RequestBody PeerDTO peer) {
-        peerService.savePeer(peer);
-        return "redirect:/school/peers";
+    @ResponseBody
+    public ResponseEntity<?> updatePeer(@Valid @RequestBody PeerDTO peer) {
+        var updatedPeer = peerService.savePeer(peer);
+        PeerDTO peerDTO = PeerDTO.builder()
+                .nickname(updatedPeer.getNickname())
+                .birthday(updatedPeer.getBirthday())
+                .build();
+        return new ResponseEntity<>(peerDTO, HttpStatus.OK);
     }
 
     @DeleteMapping(DELETE_PEER)
+    @ResponseBody
     public ResponseEntity<?> deletePeer(@PathVariable(name = "peerId") String nickname) {
         peerService.deletePeer(nickname);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-//    @RequestMapping("/getOnePeer")
-//    @ResponseBody
-//    public Peer getOnePeer(@RequestParam  String nickname) {
-//        return peerService.getPeer(nickname);
-//    }
-
-
-//    @ModelAttribute("peer")
-//    public Peer getPeer() {
-//        return new Peer();
-//    }
-
+    @GetMapping(GET_PEER)
+    @ResponseBody
+    public ResponseEntity<?> getPeer(@PathVariable(name = "peerId") String nickname) {
+        Peer gettingPeer = peerService.getPeer(nickname);
+        PeerDTO peerDTO = PeerDTO.builder()
+                .nickname(gettingPeer.getNickname())
+                .birthday(gettingPeer.getBirthday())
+                .build();
+        return new ResponseEntity<>(peerDTO, HttpStatus.OK);
+    }
 
 }

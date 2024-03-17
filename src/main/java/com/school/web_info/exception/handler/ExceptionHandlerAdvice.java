@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,7 +37,7 @@ public class ExceptionHandlerAdvice {
             throws JsonProcessingException {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).
                 body(objectMapper.writeValueAsString(
-                        new ErrorMessage(LocalDateTime.now(), exception.getMessage())));
+                        new ErrorMessage(LocalDateTime.now(), exception.getMessage(),HttpStatus.NOT_FOUND)));
     }
 
 

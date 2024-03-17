@@ -28,24 +28,23 @@ public class PeerServiceImplementation implements PeerService {
 
     @Override
     public Peer getPeer(String nickname) {
-        return peerRepository.getReferenceById(nickname);
+        return peerRepository.findById(nickname).orElseThrow(
+                () -> new NotFoundException(String.format("User with nickname %s not found", nickname))
+        );
     }
 
     @Override
-    public void savePeer(PeerDTO peerDTO) {
+    public Peer savePeer(PeerDTO peerDTO) {
         Peer peer = convertPeerDTOtoPeerEntity(peerDTO);
-        peerRepository.saveAndFlush(peer);
+        return peerRepository.saveAndFlush(peer);
     }
 
     private Peer convertPeerDTOtoPeerEntity(PeerDTO peerDTO) {
         String nickname = peerDTO.getNickname();
         Optional<Peer> peer = peerRepository.findById(nickname);
-        Peer peerEntity = null;
+        Peer peerEntity;
         if (peer.isPresent()) {
-            peerEntity = peerRepository.findById(nickname)
-                    .orElseThrow(
-                            () -> new NotFoundException(String.format("User with nickname %s not found",nickname))
-                    );
+            peerEntity = peer.get();
             peerEntity.setBirthday(peerDTO.getBirthday());
         } else {
             peerEntity = Peer.builder()
@@ -59,7 +58,7 @@ public class PeerServiceImplementation implements PeerService {
     @Override
     public void deletePeer(String nickname) {
         Peer peerFindByNickname = peerRepository.findById(nickname).orElseThrow(
-                () -> new NotFoundException(String.format("User with nickname %s not found",nickname))
+                () -> new NotFoundException(String.format("User with nickname %s not found", nickname))
         );
         peerRepository.delete(peerFindByNickname);
     }

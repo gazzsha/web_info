@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = BirthdayValidator.class)
 @Documented
 public @interface Birthday {
-    String message() default "{Invalid Birthday}";
+    String message() default "Возраст 18+";
 
     Class<?>[] groups() default { };
 

@@ -17,7 +17,7 @@ public interface PeerService {
 
 
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
-    void savePeer(PeerDTO peer);
+    Peer savePeer(PeerDTO peer);
 
 
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
