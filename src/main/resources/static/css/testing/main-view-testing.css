@@ -1,0 +1,56 @@
+#body {
+    background: #ebecf4;
+}
+
+
+#container {
+    flex-wrap: wrap;
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start; /* Выравнивание элементов по центру по вертикали */
+}
+
+
+.card {
+    border-radius: 20px;
+    clear: left;
+    margin-left: 1%;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0px 1px 13px -6px rgba(30, 41, 50, 0.6);
+    -moz-box-shadow: 0px 1px 13px -6px rgba(30, 41, 50, 0.6);
+    box-shadow: 0px 1px 13px -6px rgba(30, 41, 50, 0.6);
+    width: 50%; /* Установите ширину изображения в 100% от размеров родительского блока */
+    height: auto;
+}
+
+.card-body {
+    text-align: center;
+
+    .card-title {
+        text-align: left;
+    }
+
+    .card-subtitle {
+        text-align: left;
+    }
+
+    .card-text {
+        text-align: left;
+    }
+
+}
+
+.card:hover {
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
+}
+
+#image-rec {
+    border-radius: 10px;
+    width: 50%; /* Установите ширину изображения в 100% от размеров родительского блока */
+    height: auto; /* Автоматическое вычисление высоты для поддержки соотношения сторон */
+    max-width: 300px; /* Максимальная ширина изображения, чтобы избежать растягивания на больших экранах */
+    max-height: 500px; /* Максимальная высота изображения */
+    /*margin: 5px 10%;*/
+    align-content: center;
+}

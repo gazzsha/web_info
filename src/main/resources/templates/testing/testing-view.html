@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/wlogo.css">
+    <link rel="stylesheet" type="text/css" href="/css/testing/testing-view.css">
+    <script type="text/javascript" src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../static/js/testing-logic.js"
+            th:src="@{/js/testing-logic.js}"></script>
+    <title>Title</title>
+</head>
+
+<div th:insert="navbar :: nav-placeholder"></div>
+<body id="body" th:fragment="main-recommendation">
+<br><br>
+
+<div role="main" class="container">
+    <div class="starter-template">
+        <div id="container">
+            <!-- Прямоугольные области -->
+            <div th:each="answer : ${test}" class="question">
+                <div class="question-box">
+                    <!-- Вопрос -->
+                    <span th:text="${answer.getQuestion()}"></span><br>
+                    <hr class="hr-shadow">
+                    <!-- Кнопки с ответами -->
+                    <div class="answer-buttons">
+                        <span th:each="question : ${answer.getAnswers()}">
+                            <button type="button" class="btn btn-outline-dark answer-button" th:text="${question}"></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <button id="submitButton" type="button" class="btn btn-primary">Готово</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
