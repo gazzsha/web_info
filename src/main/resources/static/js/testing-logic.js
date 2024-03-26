@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Выполнить GET-запрос для получения верных ответов
-    fetch('/testing/answer')
+    fetch('/school/testing/answer')
         .then(response => response.json())
         .then(data => {
             correctAnswers = data; // Сохранить верные ответы в массив

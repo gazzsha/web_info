@@ -1,10 +1,8 @@
 package com.school.web_info.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.school.web_info.validation.Birthday;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
