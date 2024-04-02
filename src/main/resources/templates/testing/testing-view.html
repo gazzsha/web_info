@@ -20,7 +20,7 @@
     <div class="starter-template">
         <div id="container">
             <!-- Прямоугольные области -->
-            <div th:each="answer : ${test}" class="question">
+            <div th:each="answer : ${test.getAnswerList()}" class="question">
                 <div class="question-box">
                     <!-- Вопрос -->
                     <span th:text="${answer.getQuestion()}"></span><br>

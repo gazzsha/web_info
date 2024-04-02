@@ -1,19 +1,18 @@
 package com.school.web_info.service;
 
 
-import com.school.web_info.dto.PeerDTO;
 import com.school.web_info.dto.UserDTO;
-import com.school.web_info.entity.Peer;
 import com.school.web_info.entity.User;
-import com.school.web_info.exception.error.NotFoundException;
+import com.school.web_info.exception.error.DataBaseException;
 import com.school.web_info.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.hibernate.JDBCException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
-import java.util.Optional;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.StringTokenizer;
 
 @Service
@@ -29,23 +28,24 @@ public class AuthService {
             User user = convertUserDTOtoUserEntity(userDTO);
             return userRepository.saveAndFlush(user);
         } catch (JDBCException exception) {
-            // TODO : exception of unique
-            throw new NotFoundException(exception.getMessage());
+            throw new DataBaseException(exception.getMessage());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    private User convertUserDTOtoUserEntity(UserDTO userDTO) {
+    private User convertUserDTOtoUserEntity(UserDTO userDTO) throws ParseException {
         String fullName = userDTO.fullName();
         StringTokenizer stringTokenizer = new StringTokenizer(fullName);
-        String name = stringTokenizer.nextToken();
-        String lastName = stringTokenizer.nextToken();
-        String password = userDTO.password();
-        String roles = userDTO.roles();
         User user = new User();
-        user.setName(name);
-        user.setLastName(lastName);
-        user.setPassword(passwordEncoder.encode(password));
-        user.setRoles(roles);
+        user.setName(stringTokenizer.nextToken());
+        user.setLastName(stringTokenizer.nextToken());
+        user.setPassword(passwordEncoder.encode(userDTO.password()));
+        user.setEmail(userDTO.email());
+        user.setBirthday(userDTO.birthday());
+        user.setSchoolName(userDTO.schoolName());
+        user.setSkills(userDTO.skills());
+        user.setRoles(userDTO.roles());
         return user;
     }
 

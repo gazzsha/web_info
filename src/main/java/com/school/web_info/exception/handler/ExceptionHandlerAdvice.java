@@ -3,10 +3,7 @@ package com.school.web_info.exception.handler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.school.web_info.exception.error.ErrorMessage;
-import com.school.web_info.exception.error.NotFoundException;
-import com.school.web_info.exception.error.ValidationErrorResponse;
-import com.school.web_info.exception.error.Violation;
+import com.school.web_info.exception.error.*;
 import jakarta.validation.ConstraintViolationException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -37,9 +34,18 @@ public class ExceptionHandlerAdvice {
             throws JsonProcessingException {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).
                 body(objectMapper.writeValueAsString(
-                        new ErrorMessage(LocalDateTime.now(), exception.getMessage(),HttpStatus.NOT_FOUND)));
+                        new ErrorMessage(LocalDateTime.now(), exception.getMessage(), HttpStatus.NOT_FOUND)));
     }
 
+    @ExceptionHandler(DataBaseException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ResponseEntity<?> handleSQLException(DataBaseException exception)
+            throws JsonProcessingException {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).
+                body(objectMapper.writeValueAsString(
+                        new ErrorMessage(LocalDateTime.now(), exception.getMessage(), HttpStatus.BAD_REQUEST)));
+    }
 
     @ResponseBody
     @ExceptionHandler(ConstraintViolationException.class)
@@ -66,7 +72,7 @@ public class ExceptionHandlerAdvice {
             MethodArgumentNotValidException e
     ) {
         final List<Violation> violations = e.getBindingResult().getFieldErrors().stream()
-                .map(error -> new Violation(LocalDateTime.now(),error.getField(), error.getDefaultMessage()))
+                .map(error -> new Violation(LocalDateTime.now(), error.getField(), error.getDefaultMessage()))
                 .collect(Collectors.toList());
         return new ValidationErrorResponse(violations);
     }

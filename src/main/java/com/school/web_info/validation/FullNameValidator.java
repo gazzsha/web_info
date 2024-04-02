@@ -9,7 +9,7 @@ public class FullNameValidator implements ConstraintValidator<FullName, String> 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
         if (Objects.isNull(s) || s.isEmpty()) return false;
-        String[] tokensFullName = s.split(" ");
+        String[] tokensFullName = s.trim().split(" ");
         return tokensFullName.length == 2;
     }
 }

@@ -19,39 +19,39 @@
 <div role="main" class="container">
     <div class="starter-template">
         <div id="container">
-                <div class="card" id="card1">
+            <div th:each="test:${test}">
+                <div class="card"  th:id="${test._id}">
                     <div class="card-body">
-                        <img th:src="@{/images/informatics-test.png}" alt="img-test-informatics" id="image-rec">
-                        <h4 class="card-title">Знания программирования</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Тест</h6>
-                        <p class="card-text">
-                            Предлагается пройти тестирование для оцения ваших навыков в плане информатики и
-                            программирования.
+                        <img th:src="@{'/images/' + ${test.imgUrl}}" alt="img-test-informatics" id="image-rec">
+                        <h4 class="card-title" th:text="${test.name}"></h4>
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${test.title}"></h6>
+                        <p class="card-text" th:text="${test.description}">
                         </p>
                     </div>
                 </div>
-            <div class="card">
-                <div class="card-body">
-                    <img th:src="@{/images/informatics-test.png}" alt="img-test-informatics" id="image-rec">
-                    <h4 class="card-title">Знания программирования</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Тест</h6>
-                    <p class="card-text">
-                        Предлагается пройти тестирование для оцения ваших навыков в плане информатики и
-                        программирования.
-                    </p>
-                </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <img th:src="@{/images/informatics-test.png}" alt="img-test-informatics" id="image-rec">
-                    <h4 class="card-title">Знания программирования</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Тест</h6>
-                    <p class="card-text">
-                        Предлагается пройти тестирование для оцения ваших навыков в плане информатики и
-                        программирования.
-                    </p>
-                </div>
-            </div>
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                    <img th:src="@{/images/informatics-test.png}" alt="img-test-informatics" id="image-rec">-->
+<!--                    <h4 class="card-title">Знания программирования</h4>-->
+<!--                    <h6 class="card-subtitle mb-2 text-muted">Тест</h6>-->
+<!--                    <p class="card-text">-->
+<!--                        Предлагается пройти тестирование для оцения ваших навыков в плане информатики и-->
+<!--                        программирования.-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                    <img th:src="@{/images/informatics-test.png}" alt="img-test-informatics" id="image-rec">-->
+<!--                    <h4 class="card-title">Знания программирования</h4>-->
+<!--                    <h6 class="card-subtitle mb-2 text-muted">Тест</h6>-->
+<!--                    <p class="card-text">-->
+<!--                        Предлагается пройти тестирование для оцения ваших навыков в плане информатики и-->
+<!--                        программирования.-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </div>

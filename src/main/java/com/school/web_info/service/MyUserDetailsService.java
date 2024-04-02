@@ -2,6 +2,8 @@ package com.school.web_info.service;
 
 import com.school.web_info.configuration.UserDetail;
 import com.school.web_info.entity.User;
+import com.school.web_info.exception.error.InvalidDataUser;
+import com.school.web_info.exception.error.NotFoundException;
 import com.school.web_info.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -24,9 +26,11 @@ public class MyUserDetailsService implements
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        StringTokenizer stringTokenizer = new StringTokenizer(username);
-        Optional<User> user = userRepository.findUserByNameAndLastName(stringTokenizer.nextToken(), stringTokenizer.nextToken());
-        return user.map(UserDetail::new)
-                .orElseThrow(() -> new UsernameNotFoundException(username + " не найден"));
+        StringTokenizer stringTokenizer = new StringTokenizer(username.trim());
+        if (stringTokenizer.countTokens() != 2)
+            throw new InvalidDataUser("Логин должен содержать имя и фамилию через пробел");
+        User user = userRepository.findUserByNameAndLastName(stringTokenizer.nextToken(), stringTokenizer.nextToken())
+                .orElseThrow(() -> new NotFoundException(String.format("Пользователь с логином %s не зарегистрирован.", username)));
+        return new UserDetail(user);
     }
 }

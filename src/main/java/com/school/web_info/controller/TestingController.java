@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
@@ -23,7 +24,7 @@ public class TestingController {
 
     public static final String GET_TESTS = "/test";
 
-    public static final String GET_TEST = "/testing";
+    public static final String GET_TEST = "/testing/{id}";
 
     public static final String GET_CURRENT_ANSWER = "/testing/answer";
 
@@ -33,16 +34,18 @@ public class TestingController {
 
     @GetMapping(GET_TESTS)
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String getMainTestingPage(Principal principal) {
+    public String getMainTestingPage(Principal principal,Model model) {
+        model.addAttribute("test",testRepository.findAll());
         log.info(principal.getName());
         return "testing/main-testing-view";
     }
 
     @GetMapping(GET_TEST)
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String getTests(Model model) {
-        List<Test> test = testRepository.findAll();
-        model.addAttribute("test", test.get(0).getAnswerList());
+    public String getTests(@PathVariable(name = "id") String id, Model model) {
+        System.out.println(id);
+        Test test = testRepository.findBy_id(id);
+        model.addAttribute("test", test);
         return "testing/testing-view";
     }
 
