@@ -1,5 +1,6 @@
 package com.school.web_info.entity;
 
+import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -9,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Embeddable
 public class Answer {
     @NotNull
     private String question;

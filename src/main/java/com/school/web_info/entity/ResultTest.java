@@ -18,7 +18,7 @@ public class ResultTest {
     @Column(name = "count_true_answer", nullable = false)
     private Long countTrueAnswer;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 }

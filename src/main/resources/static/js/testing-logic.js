@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }).then(response => {
             if (response.ok) {
                 // Если ответ успешен (статус код 200-299), открываем ссылку
-                window.open("school/test", '_self');
+                window.open("http://localhost:8080/school/test", '_self');
             }});
     }
     // function countTotalOccurrences(arr1, arr2) {

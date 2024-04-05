@@ -1,9 +1,7 @@
 package com.school.web_info.entity;
 
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -30,4 +28,5 @@ public class Test {
 
     @NonNull
     private List<Answer> answerList;
+
 }

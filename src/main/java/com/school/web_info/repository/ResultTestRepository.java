@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface ResultTestRepository extends JpaRepository<ResultTest,Long> {
     Optional<ResultTest> findResultTestByUserAndTestId(User user,String testId);
+    ResultTest findResultTestByTestId(String testId);
 }
