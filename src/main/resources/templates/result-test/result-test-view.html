@@ -14,33 +14,31 @@
 <body id="body" th:fragment="main-recommendation">
 <br><br>
 
+
 <div role="main" class="container">
     <div class="starter-template">
         <div id="container">
-            <!-- Прямоугольные области -->
-            <div th:each="result : ${results}" class="question">
-                <div class="question-box">
-                    <div class="test">
-                        <span th:text="${result.first().name()}"></span>
-                        <div th:if="${result.second().isEmpty()}" class="no-results">
-                            <span>No results found for this test.</span>
-                        </div>
-                        <div th:each="res : ${result.second()}" class="users">
-                            <span th:text="${res.countTrueAnswer()}"></span><br>
-                            <span th:text="${res.user().name()}"></span><br>
-                            <span th:text="${res.user().email()}"></span><br>
-                            <!-- Добавьте другие свойства пользователя по желанию -->
-                            <hr class="hr-shadow">
-                            <div class="answer-buttons">
-                            </div>
+            <div th:each="result : ${results}">
+                <div class="card-body">
+                    <h2 class="card-title" th:text="${result.first().name()}"></h2>
+                    <h6 class="card-subtitle mb-2 text-muted"
+                        th:text="${result.first().title()} + ' из ' + ${result.first().countAnswer()} + ' вопросов'"></h6>
+                    <p class="card-text" th:text="${result.first().description()}"></p>
+                    <div class="card" th:each="res : ${result.second()}">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${res.user().name()} + ' ' + ${res.user().lastName()}"></h5>
+                            <h6 class="card-subtitle mb-2 text-muted" th:text="'Почта: ' + ${res.user().email()}"></h6>
+                            <p class="card-text">
+                                Правильных ответов: <strong th:text="${res.countTrueAnswer()}"></strong>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <button id="submitButton" type="button" class="btn btn-primary">Готово</button>
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

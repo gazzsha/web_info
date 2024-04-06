@@ -25,22 +25,9 @@ import java.util.stream.Collectors;
 public class ResultTestService {
     private final TestRepository testRepository;
     private final ResultTestRepository resultTestRepository;
-    private final UserRepository userRepository;
-
 
     @Transactional(isolation = Isolation.REPEATABLE_READ)
     public List<Pair<TestShortInfoDto, List<ResultTestDto>>> getPassedTest() {
-//        return testRepository.findAll()
-//                .stream()
-//                .collect(Collectors.groupingBy(Test::get_id,
-//                        Collectors.mapping(test -> PojoMapper.INSTANCE.resultTestToResultTestDto(resultTestRepository.findResultTestByTestId(test.get_id())), Collectors.toList())))
-//                .entrySet().stream().collect(Collectors.toMap(
-//                        entry -> PojoMapper.INSTANCE.testToTestShortDto(testRepository.findBy_id(entry.getKey())),
-//                        Map.Entry::getValue,
-//                        (e1, e2) -> {
-//                            throw new RuntimeException();
-//                        },
-//                        LinkedHashMap::new));
         return resultTestRepository.findAll()
                 .stream()
                 .collect(Collectors.groupingBy(ResultTest::getTestId,

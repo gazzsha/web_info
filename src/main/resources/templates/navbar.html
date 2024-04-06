@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet"/>
-    <link  rel="stylesheet" type="text/css" th:src="@{/css/wlogo.css}">
+    <link rel="stylesheet" type="text/css" th:src="@{/css/wlogo.css}">
     <script type="text/javascript" src="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"></script>
     <script type="text/javascript" src="/webjars/jquery/3.0.0/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
@@ -33,9 +33,9 @@
                 <li class="nav-item">
                     <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                 </li>
-
                 <li class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img th:src="@{/images/database.svg}" id="database-icon" alt="database icon">
                         Data Base
                     </button>
@@ -62,22 +62,22 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">  </a>
-                </li>
-                <li class="nav-item" href="/school/test">
-                    <button class="btn btn-primary" type="button" id="testing" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link text-white" href="/school/test">
                         Тестирование
-                    </button>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">  </a>
-                </li>
-                <li class="nav-item" href="/school/result-test">
-                    <button class="btn btn-primary" type="button" id="result" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link text-white" href="/school/results">
                         Результаты
-                    </button>
+                    </a>
                 </li>
-           </ul>
+                <li class="dropdown">
+                    <span class="nav-link" id="dropdownLeft" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">...</span>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownLeft">
+                        <a class="dropdown-item" href="/school/logout">Выход</a>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>

@@ -24,6 +24,20 @@
     height: auto;
 }
 
+.user-info-card {
+    display: none; /* Скрыть по умолчанию */
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 999; /* Убедитесь, что карточка находится выше других элементов */
+}
+
+/* Анимация для появления карточки с информацией о пользователе */
+.card-body:hover .user-info-card {
+    display: block;
+}
+
 .card-body {
     text-align: center;
 
@@ -43,14 +57,4 @@
 
 .card:hover {
     box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
-}
-
-#image-rec {
-    border-radius: 10px;
-    width: 50%; /* Установите ширину изображения в 100% от размеров родительского блока */
-    height: auto; /* Автоматическое вычисление высоты для поддержки соотношения сторон */
-    max-width: 300px; /* Максимальная ширина изображения, чтобы избежать растягивания на больших экранах */
-    max-height: 500px; /* Максимальная высота изображения */
-    /*margin: 5px 10%;*/
-    align-content: center;
 }

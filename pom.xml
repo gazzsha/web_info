@@ -80,7 +80,11 @@
             <version>${org.mapstruct.extensions.spring.version}</version>
             <scope>compile</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>4.25.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
