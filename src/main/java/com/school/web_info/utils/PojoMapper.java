@@ -2,6 +2,7 @@ package com.school.web_info.utils;
 
 import com.school.web_info.dto.ResultTestDto;
 import com.school.web_info.dto.TestDto;
+import com.school.web_info.dto.TestShortInfoDto;
 import com.school.web_info.dto.UserShortInfoDto;
 import com.school.web_info.entity.ResultTest;
 import com.school.web_info.entity.Test;
@@ -17,6 +18,13 @@ public interface PojoMapper {
     PojoMapper INSTANCE = Mappers.getMapper(PojoMapper.class);
 
     TestDto testToTestDto(Test test);
+
+
+
+    @Mappings({
+            @Mapping(target = "countAnswer", expression = "java(test.getAnswerList().size())")
+    })
+    TestShortInfoDto testToTestShortDto(Test test);
 
 
     @Mappings({
