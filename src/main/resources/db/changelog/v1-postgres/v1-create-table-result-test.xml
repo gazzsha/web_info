@@ -6,24 +6,21 @@
     <changeSet id="v1-1" author="Rysaev Aydar">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="activity_time"/>
+                <tableExists tableName="result_test"/>
             </not>
         </preConditions>
-        <createTable tableName="activity_time">
+        <createTable tableName="result_test">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="date" type="Date">
+            <column name="count_true_answer" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="time" type="TIME WITHOUT TIME ZONE">
-                <constraints nullable="false"/>
-            </column>
-            <column name="status" type="varchar(5)">
-                <constraints nullable="false"/>
+            <column name="test_id" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="user_id" type="bigint">
-                <constraints foreignKeyName="users_time_activity_fk"
+                <constraints foreignKeyName="users_result_test_fk"
                              referencedTableName="users"
                              referencedColumnNames="id"/>
             </column>

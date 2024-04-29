@@ -3,5 +3,11 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+    <include file="v1-create-table-users.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-table-faculty.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-table-educational_institution.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-table-admission.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-table-questionnaire.xml" relativeToChangelogFile="true"/>
     <include file="v1-create-table-activity_time.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-table-result-test.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

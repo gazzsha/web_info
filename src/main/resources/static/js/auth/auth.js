@@ -6,18 +6,12 @@ $('document').ready(function () {
         let lastName = document.getElementById("lastName").value;
         let password = document.getElementById("password").value;
         let email = document.getElementById("email").value;
-        let schoolName = document.getElementById("schoolName").value;
-        let birthday = document.getElementById("date").value;
-        let skills = document.getElementById("skills").value;
         let fullName = name + " " + lastName;
 
         let data = {
             "fullName": fullName,
             "password": password,
             "email": email,
-            "birthday": birthday,
-            "schoolName": schoolName,
-            "skills": skills,
             "roles": "ROLE_USER"
         };
 

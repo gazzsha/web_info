@@ -1,9 +1,13 @@
 package com.school.web_info.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
-
-import java.sql.Date;
 
 @Data
 @Entity
@@ -20,12 +24,6 @@ public class User {
     private String password;
     @Column(name = "email", nullable = false)
     private String email;
-    @Column(name = "birthday", nullable = false)
-    private Date birthday;
-    @Column(name = "schoolName", nullable = false)
-    private String schoolName;
-    @Column(name = "skills", nullable = false)
-    private String skills;
     @Column(name = "roles", nullable = false)
     private String roles;
 }

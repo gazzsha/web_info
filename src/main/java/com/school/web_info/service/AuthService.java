@@ -10,9 +10,6 @@ import org.hibernate.JDBCException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.StringTokenizer;
 
 @Service
@@ -29,12 +26,10 @@ public class AuthService {
             return userRepository.saveAndFlush(user);
         } catch (JDBCException exception) {
             throw new DataBaseException(exception.getMessage());
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
         }
     }
 
-    private User convertUserDTOtoUserEntity(UserDTO userDTO) throws ParseException {
+    private User convertUserDTOtoUserEntity(UserDTO userDTO) {
         String fullName = userDTO.fullName();
         StringTokenizer stringTokenizer = new StringTokenizer(fullName);
         User user = new User();
@@ -42,9 +37,6 @@ public class AuthService {
         user.setLastName(stringTokenizer.nextToken());
         user.setPassword(passwordEncoder.encode(userDTO.password()));
         user.setEmail(userDTO.email());
-        user.setBirthday(userDTO.birthday());
-        user.setSchoolName(userDTO.schoolName());
-        user.setSkills(userDTO.skills());
         user.setRoles(userDTO.roles());
         return user;
     }

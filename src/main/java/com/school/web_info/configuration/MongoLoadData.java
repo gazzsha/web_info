@@ -1,29 +1,20 @@
 package com.school.web_info.configuration;
 
-import com.school.web_info.entity.Answer;
-import com.school.web_info.entity.Test;
 import com.school.web_info.repository.TestRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.ui.Model;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 
 @Configuration
-@FieldDefaults(makeFinal = true,level = AccessLevel.PRIVATE)
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class MongoLoadData {
 
     TestRepository testRepository;
 
-//    @Bean
+//   @Bean
 //    CommandLineRunner loadTestData() {
 //        return args -> {
 //            testRepository.deleteAll();
@@ -36,8 +27,8 @@ public class MongoLoadData {
 //            Test test1 = Test.of("Знания программирования","Тест",
 //                    "Предлагается пройти тестирование для оцения ваших навыков в плане информатики и программирования.",
 //                    "sql_test.jpg",
-//                    List.of(Answer.of("ВОпрос 2(1)",List.of("Сколько нам лет?","Если к изображению применить свойство max-width: 100% оно останется в границах родительского элемента, даже при том, что его изначальный размер больше."),"Мы животные?")));
-//            testRepository.save(test);
+//                  List.of(Answer.of("ВОпрос 2(1)",List.of("Сколько нам лет?","Если к изображению применить свойство max-width: 100% оно останется в границах родительского элемента, даже при том, что его изначальный размер больше."),"Мы животные?")));
+//          testRepository.save(test);
 //            testRepository.save(test1);
 //        };
 //    }

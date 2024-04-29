@@ -21,7 +21,6 @@ public class ControllerChecks {
     @GetMapping("/checks")
     @ResponseBody
     public List<Checks> showp2pList() {
-        List<Checks> checksList =  checksService.getAllChecks();
-        return checksList;
+        return checksService.getAllChecks();
     }
 }

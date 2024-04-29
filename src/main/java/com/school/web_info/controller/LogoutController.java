@@ -22,7 +22,7 @@ public class LogoutController {
 
     @GetMapping("/logout")
     public String performLogout(HttpServletRequest httpServletRequest) {
-        timeActivityService.activityUser((UserDetails) (((Authentication)httpServletRequest.getUserPrincipal()).getPrincipal()), Status.Out);
+        timeActivityService.activityUser(((Authentication)httpServletRequest.getUserPrincipal()).getPrincipal(), Status.Out);
         return "redirect:/logout";
     }
 }
