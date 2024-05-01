@@ -22,4 +22,11 @@ public class DefaultFacultyService implements FacultyService {
     public List<Faculty> getAllFaculty() {
         return facultyRepository.findAll();
     }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public Faculty getByFacultyName(String facultyName) {
+        return facultyRepository.findByFacultyName(facultyName);
+    }
+
 }

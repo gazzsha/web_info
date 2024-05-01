@@ -7,4 +7,6 @@ import java.util.List;
 public interface AdmissionService {
 
     List<Admission> getAllAdmission();
+
+    Admission getAdmissionByAdmissionVariant(String admissionVariant);
 }

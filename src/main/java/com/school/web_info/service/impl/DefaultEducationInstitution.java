@@ -22,4 +22,10 @@ public class DefaultEducationInstitution implements EducationInstitutionService 
     public List<EducationalInstitution> getAllEducations() {
         return educationInstitutionRepository.findAll();
     }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public EducationalInstitution getEducationInstitution(String institution) {
+        return educationInstitutionRepository.findByInstitution(institution);
+    }
 }

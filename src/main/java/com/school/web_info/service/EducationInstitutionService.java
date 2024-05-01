@@ -8,4 +8,6 @@ public interface EducationInstitutionService {
 
     List<EducationalInstitution> getAllEducations();
 
+    EducationalInstitution getEducationInstitution(String institution);
+
 }

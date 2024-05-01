@@ -13,11 +13,10 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="lastname" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="firstname" type="varchar(255)">
-                <constraints nullable="false"/>
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="questionnaire_users_fk"
+                             referencedTableName="users"
+                             referencedColumnNames="id"/>
             </column>
             <column name="surname" type="varchar(255)">
                 <constraints nullable="false"/>

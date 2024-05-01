@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AdmissionRepository extends JpaRepository<Admission, Long> {
+
+    Admission findByAdmissionVariant(String admissionVariant);
 }

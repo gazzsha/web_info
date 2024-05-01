@@ -21,4 +21,10 @@ public class DefaultAdmissionService implements AdmissionService {
     public List<Admission> getAllAdmission() {
         return admissionRepository.findAll();
     }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public Admission getAdmissionByAdmissionVariant(String admissionVariant) {
+        return admissionRepository.findByAdmissionVariant(admissionVariant);
+    }
 }

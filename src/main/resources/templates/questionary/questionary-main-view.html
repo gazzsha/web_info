@@ -7,7 +7,9 @@
     <link rel="stylesheet" type="text/css" href="/css/questionary/main-questionary-vies.css">
     <script type="text/javascript" src="/webjars/jquery/3.0.0/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <title>Title</title>
+    <script type="text/javascript" src="../../static/js/questionary/main-page-questionary.js"
+            th:src="@{/js/questionary/main-page-questionary.js}"></script>
+    <title>Anketa</title>
 </head>
 
 <div th:insert="navbar :: nav-placeholder"></div>
@@ -25,6 +27,10 @@
                     <input type="text" id="surname" placeholder="Введите свое отчество" required autocomplete="off">
                 </div>
                 <div class="input-box">
+                    <span class="details">Дата рождения</span>
+                    <input type="date" id="birthday" placeholder="Выберите дату рождения" required autocomplete="off">
+                </div>
+                <div class="input-box">
                     <span class="details">Факультет</span>
                     <select id="faculty" required>
                         <option value="">Выберите факультет</option>
@@ -36,7 +42,7 @@
 
                 <div class="input-box">
                     <span class="details">Закончил(а)</span>
-                    <select id="institutions" required>
+                    <select id="institution" required>
                         <option value="">Выберите учебное учереждение</option>
                         <th:block th:each="institution : ${institutions}">
                             <option th:text="${institution.institution}"></option>
@@ -45,17 +51,47 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Город</span>
-                    <input type="text" id="schoolName" placeholder="Введите название своего города" required
+                    <input type="text" id="city" placeholder="Введите название своего города" required
                            autocomplete="off">
                 </div>
                 <div class="input-box">
                     <span class="details">Как поступил(а)</span>
-                    <select id="admissions" required>
+                    <select id="admission" required>
                         <option value="">Выбери из списка</option>
                         <th:block th:each="admission : ${admissions}">
                             <option th:text="${admission.admissionVariant}"></option>
                         </th:block>
                     </select>
+                </div>
+                <div class="input-box">
+                    <span class="details">Уровень знаний C++</span>
+                    <input type="number" id="c++_know" placeholder="Оцените (0 - не знаком(а), 5 - уверенные знания)"
+                           required
+                           autocomplete="off" min="0" max="5">
+                </div>
+                <div class="input-box">
+                    <span class="details">Уровень знаний C#</span>
+                    <input type="number" id="c_sharp" placeholder="Оцените (0 - не знаком(а), 5 - уверенные знания)"
+                           required
+                           autocomplete="off" min="0" max="5">
+                </div>
+                <div class="input-box">
+                    <span class="details">Уровень знаний Python</span>
+                    <input type="number" id="python_know" placeholder="Оцените (0 - не знаком(а), 5 - уверенные знания)"
+                           required
+                           autocomplete="off" min="0" max="5">
+                </div>
+                <div class="input-box">
+                    <span class="details">Уровень знаний Java</span>
+                    <input type="number" id="java_know" placeholder="Оцените (0 - не знаком(а), 5 - уверенные знания)"
+                           required
+                           autocomplete="off" min="0" max="5">
+                </div>
+                <div class="input-box">
+                    <span class="details">Уровень знаний SQL</span>
+                    <input type="number" id="sql_know" placeholder="Оцените (0 - не знаком(а), 5 - уверенные знания)"
+                           required
+                           autocomplete="off" min="0" max="5">
                 </div>
                 <!--                <div class="input-box">-->
                 <!--                    <span class="details">Дата рождения</span>-->
@@ -70,8 +106,8 @@
                 <!--                    <input type="password" id="password" placeholder="Введите пароль" required autocomplete="off">-->
                 <!--                </div>-->
             </div>
-            <div class="button" id="register-button">
-                <input type="submit" value="Регистрация">
+            <div class="button" id="send-button">
+                <input type="submit" value="Отправить">
             </div>
         </form>
     </div>

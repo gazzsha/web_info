@@ -7,4 +7,6 @@ import java.util.List;
 public interface FacultyService {
 
     List<Faculty> getAllFaculty();
+
+    Faculty getByFacultyName(String facultyName);
 }

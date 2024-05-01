@@ -1,6 +1,7 @@
 package com.school.web_info.entity.questioner;
 
 
+import com.school.web_info.entity.User;
 import com.school.web_info.entity.admission.Admission;
 import com.school.web_info.entity.faculty.Faculty;
 import com.school.web_info.entity.institution.EducationalInstitution;
@@ -12,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,11 +32,9 @@ public class Questioner {
     @EqualsAndHashCode.Exclude
     private Long id;
 
-    @Column(name = "firstname", nullable = false)
-    private String firstName;
 
-    @Column(name = "lastname", nullable = false)
-    private String lastName;
+    @OneToOne(orphanRemoval = false, optional = false)
+    private User user;
 
     @Column(name = "surname", nullable = false)
     private String surname;

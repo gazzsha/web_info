@@ -4,16 +4,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    height: 100vh;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    padding-top: 10%;
+    padding-bottom: 5%;
+    /*background: linear-gradient(135deg, #71b7e6, #9b59b6);*/
+    background: #ebecf4;
 }
 
 .container {
@@ -44,14 +45,15 @@ body {
 
 .content form .user-details {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
+/ / justify-content: space-between;
     margin: 20px 0 12px 0;
 }
 
 form .user-details .input-box {
     margin-bottom: 15px;
-    width: calc(100% / 2 - 20px);
+    /*width: calc(100% / 2 - 20px);*/
+    width: auto;
 }
 
 form .input-box span.details {
