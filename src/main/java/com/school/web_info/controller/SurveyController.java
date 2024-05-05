@@ -52,6 +52,13 @@ public class SurveyController {
         return "questionary/questionary-main-view";
     }
 
+
+    @GetMapping(value = "/survey/my", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<QuestionerDto> getUserQuestioner(HttpServletRequest httpServletRequest) {
+        QuestionerDto userQuestion = questinaryMapper.toDto(surveyService.getUserProfile(((Authentication) httpServletRequest.getUserPrincipal()).getPrincipal()));
+        return ResponseEntity.ok().body(userQuestion);
+    }
+
     @PostMapping(value = "/survey", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createProfile(HttpServletRequest httpServletRequest, @RequestBody @Valid QuestionerDto questionerDto) {
         surveyService.createProfile(((Authentication) httpServletRequest.getUserPrincipal()).getPrincipal(),

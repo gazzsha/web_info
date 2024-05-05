@@ -15,6 +15,8 @@ import com.school.web_info.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.StringTokenizer;
 
@@ -39,11 +41,26 @@ public class DefaultQuestionaryService implements QuestionaryService {
         String name = stringTokenizer.nextToken();
         String lastName = stringTokenizer.nextToken();
         User user = userService.getUserByNameAndLastName(name, lastName)
-                .orElseThrow(() -> new NotFoundException(String.format("пользователь с именем %s и фамилией %s не найден", name, lastName)));
+                .orElseThrow(() -> new NotFoundException(String.format("Пользователь с именем %s и фамилией %s не найден", name, lastName)));
+        Questioner existing = questionaryRepository.findByUser(user).orElse(null);
+        questioner.setId(existing != null ? existing.getId() : null);
         questioner.setUser(user);
         questioner.setAdmission(admissionObject);
         questioner.setFaculty(facultyObject);
         questioner.setEducationalInstitution(educationalInstitution);
         return questionaryRepository.save(questioner);
+    }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public Questioner getUserProfile(Object userObject) {
+        UserDetails userDetails = (UserDetails) userObject;
+        StringTokenizer stringTokenizer = new StringTokenizer(userDetails.getUsername());
+        String name = stringTokenizer.nextToken();
+        String lastName = stringTokenizer.nextToken();
+        User user = userService.getUserByNameAndLastName(name, lastName)
+                .orElseThrow(() -> new NotFoundException(String.format("Пользователь с именем %s и фамилией %s не найден", name, lastName)));
+        return questionaryRepository.findByUser(user).orElseThrow(()
+                -> new NotFoundException(String.format("Пользователь с именем %s и фамилией %s не проходит анкетирование", name, lastName)));
     }
 }

@@ -1,3 +1,33 @@
+document.addEventListener('DOMContentLoaded', async function () {
+    try {
+        let response = await fetch('/school/survey/my');
+        if (response.ok) {
+            let data = await response.json();
+            // Заполнить форму существующими данными
+            document.getElementById("surname").value = data.surname;
+            let timestampDate = data.birthday;
+            let date = new Date(timestampDate);
+            let formattedDate = date.toISOString().split('T')[0];
+            document.getElementById("birthday").value = formattedDate;
+            document.getElementById("faculty").value = data.faculty;
+            document.getElementById("institution").value = data.educationalInstitution;
+            document.getElementById("city").value = data.city;
+            document.getElementById("c++_know").value = data.levelCpp;
+            document.getElementById("admission").value = data.admission;
+            document.getElementById("java_know").value = data.levelJava;
+            document.getElementById("python_know").value = data.levelPython;
+            document.getElementById("sql_know").value = data.levelSql;
+            document.getElementById("c_sharp").value = data.levelCSharp;
+        } else {
+            console.error('Failed to fetch survey data');
+        }
+    } catch (error) {
+        console.error('Error fetching survey data:', error);
+    }
+
+    console.log(data);
+});
+
 $('document').ready(function () {
 
     $('#send-button').on('click', async function (event) {

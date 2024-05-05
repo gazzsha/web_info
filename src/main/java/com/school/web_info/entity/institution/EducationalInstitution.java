@@ -8,11 +8,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
 
 @Entity
 @Data
 @EqualsAndHashCode
 @Table(name = "educational_institution")
+@FilterDef(name = "educationInstitutionFilter", parameters = @ParamDef(name = "education", type = String.class))
+
+@Filter(
+        name = "educationInstitutionFilter",
+        condition = "educational_institution = :education"
+)
 public class EducationalInstitution {
 
     @Id

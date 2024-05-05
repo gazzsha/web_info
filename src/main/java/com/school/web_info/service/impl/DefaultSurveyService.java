@@ -52,5 +52,11 @@ public class DefaultSurveyService implements SurveyService {
         return questionaryService.createQuestioner(userObject, questioner, faculty, admission, institution);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Questioner getUserProfile(Object userObject) {
+        return questionaryService.getUserProfile(userObject);
+    }
+
 
 }

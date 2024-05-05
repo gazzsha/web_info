@@ -15,4 +15,6 @@ public interface SurveyService {
     List<Admission> getAllAdmission();
 
     Questioner createProfile(Object userObject, Questioner questioner, String faculty, String admission, String institution);
+
+    Questioner getUserProfile(Object userObject);
 }

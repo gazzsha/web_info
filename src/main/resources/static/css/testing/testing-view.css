@@ -19,7 +19,7 @@
     -moz-box-shadow: 0px 1px 13px -6px rgba(30, 41, 50, 0.6);
     box-shadow: 0px 1px 13px -6px rgba(30, 41, 50, 0.6);
     padding: 10px;
-    width: 400px; /* Ширина прямоугольной области */
+    width: 100%; /* Ширина прямоугольной области */
     text-align: center; /* Выравнивание содержимого по центру */
     margin-bottom: 20px; /* Отступ между прямоугольными областями */
 }
@@ -53,7 +53,7 @@
 
 .answer-button {
     margin: 5px 0; /* Отступ между кнопками по вертикали */
-    width: 300px; /* Желаемая ширина кнопки */
+    width: 700px; /* Желаемая ширина кнопки */
     height: auto;
     font-size: 16px;
     font-weight: bold;

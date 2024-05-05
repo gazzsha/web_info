@@ -15,7 +15,7 @@ public interface QuestinaryMapper extends Mappable<Questioner, QuestionerDto> {
                 entity.getUser().getName(),
                 entity.getUser().getLastName(),
                 entity.getSurname(),
-                entity.getBirthday().toLocalDate(),
+                entity.getBirthday(),
                 entity.getFaculty().getFacultyName(),
                 entity.getCity(),
                 entity.getEducationalInstitution().getInstitution(),
