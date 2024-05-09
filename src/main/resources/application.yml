@@ -1,0 +1,58 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url:
+      jdbc:postgresql://${app.db.postgres.host}:${app.db.postgres.port}/${app.db.postgres.database}?characterEncoding=UTF-8&useSSL=false
+    username: ${app.db.postgres.user}
+    password: ${app.db.postgres.password}
+    hikari:
+      connection-timeout: 3000
+  data:
+    mongodb:
+      database: ${app.db.mongo.database}
+      port: ${app.db.mongo.port}
+      host: ${app.db.mongo.host}
+  liquibase:
+    enabled: ${app.db.postgres.liquibase.enabled}
+    change-log: ${app.db.postgres.liquibase.changelog}
+    default-schema: ${app.db.postgres.liquibase.liquibaseSchema}
+  #  thymeleaf:
+  #    prefix:
+  #      classpath: /templates/
+  #      suffix: .html
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+#    hibernate.ddl-auto: validate
+logging:
+  level:
+    root: INFO
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.transaction: DEBUG
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.security: DEBUG
+
+
+app:
+  db:
+    postgres:
+      driver: org.postgresql.Driver
+      host: localhost
+      port: 5432
+      database: web_info
+      user: postgres
+      password: 123
+      liquibase:
+        changelog: classpath:db/changelog/main-changelog.xml
+        enabled: true
+        liquibaseSchema: public
+    mongo:
+      username: root
+      password: root
+      host: localhost
+      port: 27017
+      database: TestStore

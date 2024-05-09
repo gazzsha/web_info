@@ -1,5 +1,6 @@
 package com.school.web_info.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -7,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Data
-@Document(collection = "tests")
+@Document(collection = "test")
 @RequiredArgsConstructor(access = AccessLevel.PUBLIC,staticName = "of")
 @NoArgsConstructor
 public class Test {
@@ -24,9 +25,11 @@ public class Test {
     private String description;
 
     @NonNull
+    @Column(name = "imgUrl")
     private String imgUrl;
 
     @NonNull
+    @Column(name = "answerList")
     private List<Answer> answerList;
 
 }
