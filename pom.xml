@@ -16,6 +16,14 @@
     <properties>
         <java.version>21</java.version>
         <org.mapstruct.extensions.spring.version>1.5.5.Final</org.mapstruct.extensions.spring.version>
+        <jooq.version>3.19.8</jooq.version>
+        <liquibase.version>4.25.1</liquibase.version>
+        <driver-class-name>org.postgresql.Driver</driver-class-name>
+        <user>postgres</user>
+        <password>123</password>
+        <jooq.schema>public</jooq.schema>
+        <jooq.generator.db.dialect>org.jooq.meta.postgres.PostgresDatabase</jooq.generator.db.dialect>
+        <url>jdbc:postgresql://localhost:5432/web_info?characterEncoding=UTF-8&amp;useSSL=false</url>
     </properties>
     <dependencies>
         <dependency>
@@ -82,8 +90,29 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>4.25.1</version>
+            <version>${liquibase.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>${jooq.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-meta</artifactId>
+            <version>${jooq.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-codegen</artifactId>
+            <version>${jooq.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-jackson-extensions</artifactId>
+            <version>${jooq.version}</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -97,6 +126,50 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-jooq</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <logging>INFO</logging>
+                    <jdbc>
+                        <driver>${driver-class-name}</driver>
+                        <url>${url}</url>
+                        <user>${user}</user>
+                        <password>${password}</password>
+                    </jdbc>
+
+                    <generator>
+                        <name>org.jooq.codegen.JavaGenerator</name>
+                        <database>
+                            <name>${jooq.generator.db.dialect}</name>
+                            <includes>result_test | users | questionnaire | faculty</includes>
+                            <inputSchema>${jooq.schema}</inputSchema>
+                        </database>
+                        <!-- Generate classes for tables and records -->
+                        <generate>
+                            <globalTableReferences>true</globalTableReferences>
+                            <globalUDTReferences>false</globalUDTReferences>
+                            <daos>true</daos>
+                            <pojos>false</pojos>
+                        </generate>
+                        <!-- Configure the target package and directory -->
+                        <target>
+                            <packageName>com.school.web.jooq.db</packageName>
+                            <directory>target/generated-sources/jooq</directory>
+                        </target>
+                    </generator>
                 </configuration>
             </plugin>
         </plugins>

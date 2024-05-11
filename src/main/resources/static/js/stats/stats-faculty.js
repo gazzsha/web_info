@@ -1,44 +1,128 @@
-document.addEventListener("DOMContentLoaded", function () {
-    var chartDom = document.getElementById('main-frame');
-    var myChart = echarts.init(chartDom);
-    var option;
+// document.addEventListener("DOMContentLoaded", function () {
+//     var chartDom = document.getElementById('main-frame');
+//     var myChart = echarts.init(chartDom);
+//     var option;
+//     let xAxisData = [];
+//     let series = [];
+//     let seriesData = []
+//     $.ajax({
+//         url: '/school/stats_result',
+//         type: 'GET',
+//         dataType: 'json',
+//         success: function (data) {
+//             // Успешно получили данные
+//             processDataForChart(data);
+//             // После обработки данных вызываем setOption()
+//             option && myChart.setOption(option);
+//         },
+//         error: function (xhr, status, error) {
+//             console.error('Ошибка при получении данных:', error);
+//         }
+//     });
+//
+//     function processDataForChart(data) {
+//
+//         Object.keys(data).forEach(testName => {
+//             const facultyData = data[testName];
+//
+//             Object.keys(facultyData).forEach(facultyName => {
+//                 xAxisData.push(facultyName);
+//                 seriesData.push(facultyData[facultyName]);
+//             });
+//
+//             console.log(xAxisData)
+//
+//             console.log(seriesData)
+//
+//             series.push({
+//                 name: testName,
+//                 type: 'line',
+//                 data: seriesData,
+//                 markPoint: {
+//                     data: [
+//                         {type: 'max', name: 'Max'},
+//                         {type: 'min', name: 'Min'}
+//                     ]
+//                 },
+//                 markLine: {
+//                     data: [{type: 'average', name: 'Avg'}]
+//                 }
+//             });
+//         });
+//
+//         // После обработки данных формируем объект option
+//         option = {
+//             title: {
+//                 text: 'Результаты теста по факультетам'
+//             },
+//             tooltip: {
+//                 trigger: 'axis'
+//             },
+//             legend: {},
+//             toolbox: {
+//                 show: true,
+//                 feature: {
+//                     dataZoom: {
+//                         yAxisIndex: 'none'
+//                     },
+//                     dataView: {readOnly: false},
+//                     magicType: {type: ['line', 'bar']},
+//                     restore: {},
+//                     saveAsImage: {}
+//                 }
+//             },
+//             xAxis: {
+//                 type: 'category',
+//                 boundaryGap: false,
+//                 data: xAxisData
+//             },
+//             yAxis: {
+//                 type: 'value',
+//                 axisLabel: {
+//                     formatter: '{value}'
+//                 }
+//             },
+//             series: series
+//         };
+//     }
+// });
 
-    option = {
-        title: {
-            text: 'Temperature Change in the Coming Week'
+document.addEventListener("DOMContentLoaded", function () {
+    $.ajax({
+        url: '/school/stats_result',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            // Успешно получили данные
+            processDataForCharts(data);
         },
-        tooltip: {
-            trigger: 'axis'
-        },
-        legend: {},
-        toolbox: {
-            show: true,
-            feature: {
-                dataZoom: {
-                    yAxisIndex: 'none'
-                },
-                dataView: {readOnly: false},
-                magicType: {type: ['line', 'bar']},
-                restore: {},
-                saveAsImage: {}
-            }
-        },
-        xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-            type: 'value',
-            axisLabel: {
-                formatter: '{value} °C'
-            }
-        },
-        series: [
-            {
-                name: 'Highest',
+        error: function (xhr, status, error) {
+            console.error('Ошибка при получении данных:', error);
+        }
+    });
+
+    function processDataForCharts(data) {
+        Object.keys(data).forEach(testName => {
+            const chartDom = document.createElement('div'); // Создаем div для каждого графика
+            chartDom.setAttribute('id', testName + '-chart'); // Устанавливаем уникальный id для каждого графика
+            chartDom.setAttribute('style', 'height: 500px;'); // Задаем высоту графика
+            document.getElementById('main-frame').appendChild(chartDom); // Добавляем график в основной контейнер
+
+            const myChart = echarts.init(chartDom);
+            const xAxisData = [];
+            const seriesData = [];
+            const series = [];
+
+            const facultyData = data[testName];
+            Object.keys(facultyData).forEach(facultyName => {
+                xAxisData.push(facultyName);
+                seriesData.push(facultyData[facultyName]);
+            });
+
+            series.push({
+                name: testName,
                 type: 'line',
-                data: [10, 11, 13, 11, 12, 12, 9],
+                data: seriesData,
                 markPoint: {
                     data: [
                         {type: 'max', name: 'Max'},
@@ -47,39 +131,72 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 markLine: {
                     data: [{type: 'average', name: 'Avg'}]
-                }
-            },
-            {
-                name: 'Lowest',
-                type: 'line',
-                data: [1, -2, 2, 5, 3, 2, 0],
-                markPoint: {
-                    data: [{name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}]
                 },
-                markLine: {
-                    data: [
-                        {type: 'average', name: 'Avg'},
-                        [
-                            {
-                                symbol: 'none',
-                                x: '90%',
-                                yAxis: 'max'
-                            },
-                            {
-                                symbol: 'circle',
-                                label: {
-                                    position: 'start',
-                                    formatter: 'Max'
-                                },
-                                type: 'max',
-                                name: '最高点'
-                            }
-                        ]
-                    ]
+                itemStyle: {
+                    color: '#6c96a6' // Цвет линии
+                },
+                lineStyle: {
+                    color: '#6c96a6' // Цвет маркеров
                 }
-            }
-        ]
-    };
+            });
 
-    option && myChart.setOption(option);
+            const option = {
+                title: {
+                    text: 'Результаты теста \n' + testName + ' по факультетам',
+                    textStyle: {
+                        color: '#333' // Цвет заголовка
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    textStyle: {
+                        color: '#333' // Цвет текста легенды
+                    }
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        dataView: {readOnly: false},
+                        magicType: {type: ['line', 'bar']},
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: xAxisData,
+                    axisLine: {
+                        lineStyle: {
+                            color: '#999' // Цвет линии оси X
+                        }
+                    },
+                    axisLabel: {
+                        color: '#666' // Цвет подписей оси X
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value}',
+                        color: '#666' // Цвет подписей оси Y
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#999' // Цвет линии оси Y
+                        }
+                    }
+                },
+                series: series
+            };
+
+            myChart.setOption(option);
+        });
+    }
 });
+

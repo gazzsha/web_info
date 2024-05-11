@@ -15,6 +15,7 @@ import com.school.web_info.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +39,7 @@ public class DefaultQuestionaryService implements QuestionaryService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
     public Questioner createQuestioner(Object userObject, Questioner questioner, String faculty, String admission, String institution) {
         UserDetails userDetails = (UserDetails) userObject;
         StringTokenizer stringTokenizer = new StringTokenizer(userDetails.getUsername());
@@ -67,6 +69,12 @@ public class DefaultQuestionaryService implements QuestionaryService {
         User user = userService.getUserByNameAndLastName(name, lastName)
                 .orElseThrow(() -> new NotFoundException(String.format("Пользователь с именем %s и фамилией %s не найден", name, lastName)));
         return questionaryRepository.findByUser(user).orElseThrow(()
-                -> new NotFoundException(String.format("Пользователь с именем %s и фамилией %s не проходит анкетирование", name, lastName)));
+                -> new NotFoundException(String.format("Пользователь с именем %s и фамилией %s не прошел анкетирование", name, lastName)));
+    }
+
+    @Override
+    public Questioner getUserProfileById(Long id) {
+        return questionaryRepository.findByUserId(id).orElseThrow(()
+                -> new NotFoundException(String.format("Пользователь с id %s не существует", id)));
     }
 }

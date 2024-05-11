@@ -29,6 +29,14 @@ public interface QuestionaryRepository extends JpaRepository<Questioner, Long> {
             "JOIN FETCH q.educationalInstitution")
     List<Questioner> findAll();
 
+    @Query("FROM Questioner q " +
+            "JOIN FETCH q.user u " +
+            "JOIN FETCH q.faculty " +
+            "JOIN FETCH q.admission " +
+            "JOIN FETCH q.educationalInstitution " +
+            "where q.user.id = :id")
+    Optional<Questioner> findByUserId(@Param("id") Long id);
+
 
 //    @Query("SELECT q FROM Questioner q " +
 //            "JOIN FETCH q.user u " +

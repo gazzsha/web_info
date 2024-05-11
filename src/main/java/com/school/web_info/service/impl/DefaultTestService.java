@@ -25,8 +25,4 @@ public class DefaultTestService implements TestService {
         testRepository.save(test);
     }
 
-    @Override
-    public List<String> getAllTestsId() {
-        return testRepository.findAll_id();
-    }
 }

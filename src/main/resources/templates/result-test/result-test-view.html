@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="/css/result-test/result-test.css">
     <script type="text/javascript" src="/webjars/jquery/3.0.0/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../static/js/result-test/button-logic.js"
+            th:src="@{/js/result-test/button-logic.js}"></script>
     <title>Title</title>
 </head>
 
@@ -18,6 +20,14 @@
 <div role="main" class="container">
     <div class="starter-template">
         <div id="container">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" id="user-search" type="search" placeholder="Введите имя или фамилию"
+                       aria-label="Поиск">
+                <button class="form-control mr-sm-2" id="search-button" type="button">Поиск</button>
+            </form>
+            <ul class="navbar-nav mr-auto">
+                <!-- Ваши другие элементы навигационной панели -->
+            </ul>
             <div th:each="result : ${results}">
                 <div class="card-body">
                     <h2 class="card-title" th:text="${result.first().name()}"></h2>

@@ -66,7 +66,8 @@ public class TestingService {
         Test test = testRepository.findById(testId).orElseThrow(
                 () -> new NotFoundException(String.format("Не найден тест с идентификатором %s", testId)));
         Long countRightAnswer = test.getAnswerList().stream().filter(ans -> answerUser.contains(ans.getRightAnswer())).count();
-        ResultTest resultTest = resultTestRepository.findResultTestByUserAndTestId(user, testId).orElse(new ResultTest());
+        ResultTest resultTest = resultTestRepository.findResultTestByUserAndTestId(user, testId);
+        if (Objects.isNull(resultTest)) resultTest = new ResultTest();
         resultTest.setCountTrueAnswer(countRightAnswer);
         resultTest.setUser(user);
         resultTest.setTestId(testId);

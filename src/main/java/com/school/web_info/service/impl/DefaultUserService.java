@@ -6,6 +6,7 @@ import com.school.web_info.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,5 +18,10 @@ public class DefaultUserService implements UserService {
     @Override
     public Optional<User> getUserByNameAndLastName(String firstName, String lastName) {
         return userRepository.findUserByNameAndLastName(firstName, lastName);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

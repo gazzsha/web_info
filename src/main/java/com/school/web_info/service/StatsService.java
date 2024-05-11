@@ -13,5 +13,5 @@ public interface StatsService {
 
     List<FacultyDto> getAllFaculty();
 
-    Map<String, Map<FacultyDto, Float>> facultyAvgRatingByTest();
+    Map<String, Map<String, Double>> facultyAvgRatingByTest();
 }

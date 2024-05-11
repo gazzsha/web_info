@@ -13,4 +13,6 @@ public interface QuestionaryService {
 
 
     Questioner getUserProfile(Object userObject);
+
+    Questioner getUserProfileById(Long id);
 }
