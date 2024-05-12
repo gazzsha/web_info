@@ -35,7 +35,7 @@
                         th:text="${result.first().title()} + ' из ' + ${result.first().countAnswer()} + ' вопросов'"></h6>
                     <p class="card-text" th:text="${result.first().description()}"></p>
                     <div class="card" th:each="res : ${result.second()}">
-                        <div class="card-body">
+                        <div class="card-body" th:attr="data-id=${res.user().id()}">
                             <h5 class="card-title" th:text="${res.user().name()} + ' ' + ${res.user().lastName()}"></h5>
                             <h6 class="card-subtitle mb-2 text-muted" th:text="'Почта: ' + ${res.user().email()}"></h6>
                             <p class="card-text">

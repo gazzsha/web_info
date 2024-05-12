@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface ResultTestRepository extends JpaRepository<ResultTest, Long> {
 
 
-    @Query("from ResultTest r join fetch User u on r.user = u where r.testId = :testId and u = :user")
+    @Query("from ResultTest r join fetch r.user where r.testId = :testId and r.user = :user")
     ResultTest findResultTestByUserAndTestId(@Param(value = "user") User user, @Param("testId") String testId);
 
 
@@ -22,6 +22,9 @@ public interface ResultTestRepository extends JpaRepository<ResultTest, Long> {
 
     @NotNull
     @Override
-    @Query("from ResultTest r join fetch User u on r.user = u")
+    @Query("from ResultTest r join fetch r.user")
     List<ResultTest> findAll();
+
+    @Query("from ResultTest r join fetch r.user where r.user.id = :id")
+    List<ResultTest> findAllByUserId(@Param(value = "id") Long id);
 }

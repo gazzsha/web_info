@@ -48,4 +48,9 @@ public class DefaultResultTestService implements ResultTestService {
     public List<ResultTest> getAll() {
         return resultTestRepository.findAll();
     }
+
+    @Override
+    public List<ResultTest> getAllByUserId(Long id) {
+        return resultTestRepository.findAllByUserId(id);
+    }
 }

@@ -1,4 +1,6 @@
 package com.school.web_info.dto.filter;
 
-public record ResultTestFilter(String name, String lastName) {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record ResultTestFilter(String name,  String lastName) {
 }

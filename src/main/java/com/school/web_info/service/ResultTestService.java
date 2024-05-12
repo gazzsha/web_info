@@ -13,4 +13,6 @@ public interface ResultTestService {
 
 
     List<ResultTest> getAll();
+
+    List<ResultTest> getAllByUserId(Long id);
 }

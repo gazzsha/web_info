@@ -28,6 +28,28 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+$('document').ready(function () {
+
+    $('#search-button').on('click', async function (event) {
+        event.preventDefault();
+        let name = document.getElementById("user-name-search").value.trim();
+        let lastname = document.getElementById("user-lastname-search").value.trim();
+
+
+        let url = '/school/profiles?';
+        if (name !== '') {
+            url += 'name=' + name;
+        }
+        if (lastname !== '') {
+            url += (name === '') ? 'lastname=' + lastname : '&lastname=' + lastname;
+        }
+
+        window.location.href = url;
+    })
+
+});
+
+
 // $('document').ready(function () {
 //
 //     $('#send-button').on('click', async function (event) {

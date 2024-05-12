@@ -3,7 +3,9 @@ package com.school.web_info.controller;
 import com.school.web_info.dto.filter.FilterUser;
 import com.school.web_info.dto.questioner.QuestionerDto;
 import com.school.web_info.service.ProfileService;
+import com.school.web_info.utils.Pair;
 import com.school.web_info.utils.mapper.QuestinaryMapper;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,7 +28,8 @@ public class ProfileController {
 
 
     @GetMapping(value = "/profiles", produces = MediaType.TEXT_HTML_VALUE)
-    public String getAllProfiles(Model model, FilterUser filter) {
+    public String getAllProfiles(Model model, HttpServletRequest request) {
+        var filter = new FilterUser(request.getParameter("name"), request.getParameter("lastname"));
         var users = profileService.getAllUsers(filter);
         model.addAttribute("users", users);
         return "profile/main-page";
@@ -43,4 +48,10 @@ public class ProfileController {
         model.addAttribute("profile", questioner);
         return ResponseEntity.ok().body(questioner);
     }
+
+    @GetMapping(value = "/profiles/user/{id}/test", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Pair<Long, Integer>>> getUserPassedTest(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok().body(profileService.getUserPassedTest(id));
+    }
+
 }

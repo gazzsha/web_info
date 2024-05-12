@@ -22,11 +22,14 @@ public class UserRepositoryImpl {
     public List<User> findAllByFilter(FilterUser filter) {
         Session session = entityManager.unwrap(Session.class);
 
-        if (Objects.nonNull(filter.name())) {
-            session.enableFilter("nameFilter").setParameter("nameUser", filter.name());
-        }
-        if (Objects.nonNull(filter.lastName())) {
-            session.enableFilter("lastNameFilter").setParameter("lastNameUser", filter.lastName());
+        if (Objects.nonNull(filter)) {
+
+            if (Objects.nonNull(filter.name())) {
+                session.enableFilter("nameFilter").setParameter("nameUser", filter.name());
+            }
+            if (Objects.nonNull(filter.lastName())) {
+                session.enableFilter("lastNameFilter").setParameter("lastNameUser", filter.lastName());
+            }
         }
 
         return entityManager.createQuery("""

@@ -20,6 +20,14 @@
     <div class="starter-template">
         <div id="container">
             <div>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" id="user-name-search" type="search" placeholder="Введите имя"
+                           aria-label="Поиск">
+                    <input class="form-control mr-sm-2" id="user-lastname-search" type="search"
+                           placeholder="Введите фамилию"
+                           aria-label="Поиск">
+                    <button class="form-control mr-sm-2" id="search-button" type="button">Поиск</button>
+                </form>
                 <button th:each="user:${users}" type="button" class="btn btn-outline-dark p-2" id="peerButton"
                         th:attr="data-id=${user.id}">
                     <img th:src="@{/images/person-circle.svg}" id="imagePerson" alt="person icon"
