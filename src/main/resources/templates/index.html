@@ -3,23 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/main-page/index.css">
     <script type="text/javascript" src="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"></script>
     <script type="text/javascript" src="/webjars/jquery/3.0.0/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <title>Title</title>
+    <title>Главная страница</title>
 </head>
-<body>
+<div th:insert="navbar :: nav-placeholder"></div>
+<body id="body" th:fragment="main-recommendation">
+<br><br>
 
-<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Dropdown button
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+<div role="main" class="container">
+    <div class="starter-template text-center mt-5">
+        <h1>Добро пожаловать на сайт тестирования студентов РГУ нефти и газа!</h1>
+        <p class="lead">Этот сайт создан для студентов нашего университета. Здесь вы можете пройти анкетирование, тесты
+            по различным темам и узнать свои результаты.</p>
+    </div>
+
+    <div id="survey" class="my-5">
+        <h2>Анкетирование</h2>
+        <p>Пожалуйста, заполните информацию о себе, чтобы мы могли лучше вас узнать и улучшить наши услуги.</p>
+        <a href="/school/survey" class="btn btn-primary">Пройти анкетирование</a>
+    </div>
+
+    <div id="tests" class="my-5">
+        <h2>Тесты</h2>
+        <p>Пройдите тесты по различным темам и узнайте свои результаты.</p>
+        <a href="/school/test" class="btn btn-primary">Перейти к тестам</a>
+        <a href="/school/results" class="btn btn-primary">Перейти к результатам</a>
+    </div>
+
+    <div id="results" class="my-5">
+        <h2>Результаты</h2>
+        <p>Анализируйте результаты с помощью графиков.</p>
+        <a href="/school/stats" class="btn btn-primary">Посмотреть графики</a>
+    </div>
+
+    <div id="users" class="my-5">
+        <h2>Пользователи</h2>
+        <p>Узнайте результаты других пользователей.</p>
+        <a href="/school/profiles" class="btn btn-primary">Перейти к списку пользователей</a>
     </div>
 </div>
 
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">© 2024 РГУ нефти и газа</span>
+    </div>
+</footer>
 </body>
 </html>

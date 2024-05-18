@@ -9,7 +9,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,8 +34,19 @@ public class SecurityConfig {
                         auth.requestMatchers("school/auth/**").permitAll()
                                 .requestMatchers("school/**").authenticated()
                                 .requestMatchers("/**").permitAll())
-                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+                //    .formLogin(Customizer.withDefaults())
+                .formLogin(hs -> hs
+                        .defaultSuccessUrl("/school/main")
+                        .failureUrl("/school/login?error=true")
+                        .loginPage("/school/login")
+                        .permitAll())
+                .logout(logoutConf ->
+                        logoutConf.logoutUrl("/school/logout")
+                                .invalidateHttpSession(true)
+                                .deleteCookies("JSESSIONID")
+                                .logoutSuccessUrl("/school/login"))
                 .build();
+
     }
 
     @Bean

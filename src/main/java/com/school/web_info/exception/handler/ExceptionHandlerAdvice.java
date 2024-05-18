@@ -3,7 +3,11 @@ package com.school.web_info.exception.handler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.school.web_info.exception.error.*;
+import com.school.web_info.exception.error.DataBaseException;
+import com.school.web_info.exception.error.ErrorMessage;
+import com.school.web_info.exception.error.NotFoundException;
+import com.school.web_info.exception.error.ValidationErrorResponse;
+import com.school.web_info.exception.error.Violation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,8 +20,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
