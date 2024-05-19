@@ -1,8 +1,8 @@
 package com.school.web_info.controller;
 
-import com.school.web_info.dto.TestDto;
-import com.school.web_info.entity.ResultTest;
-import com.school.web_info.service.TestingService;
+import com.school.web_info.dto.test.TestDto;
+import com.school.web_info.entity.resulttest.ResultTest;
+import com.school.web_info.service.impl.TestingService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

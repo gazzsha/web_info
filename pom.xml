@@ -23,7 +23,7 @@
         <password>123</password>
         <jooq.schema>public</jooq.schema>
         <jooq.generator.db.dialect>org.jooq.meta.postgres.PostgresDatabase</jooq.generator.db.dialect>
-        <url>jdbc:postgresql://localhost:5432/web_info?characterEncoding=UTF-8&amp;useSSL=false</url>
+        <url>jdbc:postgresql://localhost:7748/testing_student?characterEncoding=UTF-8&amp;useSSL=false</url>
     </properties>
     <dependencies>
         <dependency>
@@ -133,7 +133,7 @@
                 <artifactId>jooq-codegen-maven</artifactId>
                 <executions>
                     <execution>
-                        <id>generate-jooq</id>
+                        <id>jooq-codegen</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
@@ -176,25 +176,3 @@
     </build>
 
 </project>
-
-
-        <!--<plugin>-->
-        <!--<groupId>org.apache.maven.plugins</groupId>-->
-        <!--<artifactId>maven-compiler-plugin</artifactId>-->
-        <!--<configuration>-->
-        <!--    <source>21</source>-->
-        <!--    <target>21</target>-->
-        <!--    <annotationProcessorPaths>-->
-        <!--        <path>-->
-        <!--            <groupId>org.mapstruct</groupId>-->
-        <!--            <artifactId>mapstruct-processor</artifactId>-->
-        <!--            <version>${org.mapstruct.extensions.spring.version}</version>-->
-        <!--        </path>-->
-        <!--        <path>-->
-        <!--            <groupId>org.projectlombok</groupId>-->
-        <!--            <artifactId>lombok-mapstruct-binding</artifactId>-->
-        <!--            <version>${lombok-mapstruct-binding.version}</version>-->
-        <!--        </path>-->
-        <!--    </annotationProcessorPaths>-->
-        <!--</configuration>-->
-        <!--</plugin>-->

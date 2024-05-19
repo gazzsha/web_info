@@ -1,6 +1,6 @@
 package com.school.web_info.repository;
 
-import com.school.web_info.entity.User;
+import com.school.web_info.entity.user.User;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 

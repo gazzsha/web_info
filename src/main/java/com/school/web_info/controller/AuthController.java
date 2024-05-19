@@ -1,8 +1,8 @@
 package com.school.web_info.controller;
 
 
-import com.school.web_info.dto.UserDTO;
-import com.school.web_info.entity.User;
+import com.school.web_info.dto.user.UserDTO;
+import com.school.web_info.entity.user.User;
 import com.school.web_info.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

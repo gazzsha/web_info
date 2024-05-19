@@ -1,13 +1,11 @@
 package com.school.web_info.service.impl;
 
-import com.school.web_info.entity.Test;
+import com.school.web_info.entity.test.Test;
 import com.school.web_info.exception.error.NotFoundException;
 import com.school.web_info.repository.TestRepository;
 import com.school.web_info.service.TestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

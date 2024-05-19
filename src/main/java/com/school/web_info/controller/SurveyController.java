@@ -1,7 +1,7 @@
 package com.school.web_info.controller;
 
 
-import com.school.web_info.dto.FacultyDto;
+import com.school.web_info.dto.daculty.FacultyDto;
 import com.school.web_info.dto.admission.AdmissionDto;
 import com.school.web_info.dto.institution.InstitutionDto;
 import com.school.web_info.dto.questioner.QuestionerDto;

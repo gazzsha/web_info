@@ -1,7 +1,7 @@
 package com.school.web_info.service.impl;
 
 import com.school.web_info.dto.filter.FilterUser;
-import com.school.web_info.entity.User;
+import com.school.web_info.entity.user.User;
 import com.school.web_info.entity.questioner.Questioner;
 import com.school.web_info.repository.impl.UserRepositoryImpl;
 import com.school.web_info.service.ProfileService;

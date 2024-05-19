@@ -1,6 +1,6 @@
 package com.school.web_info.service;
 
-import com.school.web_info.entity.User;
+import com.school.web_info.entity.user.User;
 
 import java.util.List;
 import java.util.Optional;

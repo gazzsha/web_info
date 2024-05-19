@@ -1,6 +1,6 @@
-server:
-  port: 8080
 spring:
+  config:
+    import: optional:file:.env[.properties]
   datasource:
     url:
       jdbc:postgresql://${app.db.postgres.host}:${app.db.postgres.port}/${app.db.postgres.database}?characterEncoding=UTF-8&useSSL=false
@@ -13,6 +13,9 @@ spring:
       database: ${app.db.mongo.database}
       port: ${app.db.mongo.port}
       host: ${app.db.mongo.host}
+#      username: ${app.db.mongo.username}
+#      password: ${app.db.mongo.password}
+#      uri: ${app.db.mongo.uri}
   liquibase:
     enabled: ${app.db.postgres.liquibase.enabled}
     change-log: ${app.db.postgres.liquibase.changelog}
@@ -35,24 +38,26 @@ logging:
     org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
     org.springframework.web.servlet.DispatcherServlet: DEBUG
     org.springframework.security: DEBUG
-
+server:
+  port: ${APPLICATION_PORT}
 
 app:
   db:
     postgres:
       driver: org.postgresql.Driver
-      host: localhost
-      port: 5432
-      database: web_info
-      user: postgres
-      password: 123
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      database: ${POSTGRES_DB}
+      user: ${POSTGRES_USERNAME}
+      password: ${POSTGRES_PASSWORD}
       liquibase:
         changelog: classpath:db/changelog/main-changelog.xml
-        enabled: true
+        enabled: false
         liquibaseSchema: public
     mongo:
-      username: root
-      password: root
-      host: localhost
-      port: 27017
-      database: TestStore
+#      username: ${MONGO_USERNAME}
+#      password: ${MONGO_PASSWORD}
+      host: ${MONGO_HOST}
+      port: ${MONGO_PORT}
+      database: ${MONGO_DB}
+#      uri: mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}?authSource=admin

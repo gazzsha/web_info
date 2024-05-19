@@ -1,6 +1,6 @@
 package com.school.web_info.service;
 
-import com.school.web_info.dto.FacultyDto;
+import com.school.web_info.dto.daculty.FacultyDto;
 import com.school.web_info.dto.filter.Filter;
 import com.school.web_info.entity.questioner.Questioner;
 

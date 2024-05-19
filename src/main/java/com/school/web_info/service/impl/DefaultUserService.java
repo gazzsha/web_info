@@ -1,6 +1,6 @@
 package com.school.web_info.service.impl;
 
-import com.school.web_info.entity.User;
+import com.school.web_info.entity.user.User;
 import com.school.web_info.repository.UserRepository;
 import com.school.web_info.service.UserService;
 import lombok.RequiredArgsConstructor;

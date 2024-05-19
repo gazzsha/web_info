@@ -1,6 +1,6 @@
 package com.school.web_info.controller;
 
-import com.school.web_info.dto.TestDto;
+import com.school.web_info.dto.test.TestDto;
 import com.school.web_info.service.TestService;
 import com.school.web_info.utils.mapper.TestMapper;
 import jakarta.validation.Valid;

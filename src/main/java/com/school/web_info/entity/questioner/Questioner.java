@@ -1,7 +1,7 @@
 package com.school.web_info.entity.questioner;
 
 
-import com.school.web_info.entity.User;
+import com.school.web_info.entity.user.User;
 import com.school.web_info.entity.admission.Admission;
 import com.school.web_info.entity.faculty.Faculty;
 import com.school.web_info.entity.institution.EducationalInstitution;

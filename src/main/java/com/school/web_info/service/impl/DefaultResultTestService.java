@@ -1,11 +1,11 @@
 package com.school.web_info.service.impl;
 
 
-import com.school.web_info.dto.ResultTestDto;
-import com.school.web_info.dto.TestShortInfoDto;
+import com.school.web_info.dto.test.ResultTestDto;
+import com.school.web_info.dto.test.TestShortInfoDto;
 import com.school.web_info.dto.filter.ResultTestFilter;
-import com.school.web_info.entity.ResultTest;
-import com.school.web_info.entity.User;
+import com.school.web_info.entity.resulttest.ResultTest;
+import com.school.web_info.entity.user.User;
 import com.school.web_info.repository.ResultTestRepository;
 import com.school.web_info.service.ResultTestService;
 import com.school.web_info.service.TestService;

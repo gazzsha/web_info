@@ -1,0 +1,17 @@
+version: '3.5'
+
+
+services:
+  app:
+    build:
+      context: .
+    container_name: Application
+    ports:
+      - '${APPLICATION_PORT}:${APPLICATION_PORT}'
+    networks:
+      - app
+
+networks:
+  app:
+    external:
+      name: postgres_net

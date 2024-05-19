@@ -1,7 +1,7 @@
 package com.school.web_info.utils.mapper;
 
-import com.school.web_info.dto.TestDto;
-import com.school.web_info.entity.Test;
+import com.school.web_info.dto.test.TestDto;
+import com.school.web_info.entity.test.Test;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

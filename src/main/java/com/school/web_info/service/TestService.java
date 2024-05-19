@@ -1,7 +1,7 @@
 package com.school.web_info.service;
 
 
-import com.school.web_info.entity.Test;
+import com.school.web_info.entity.test.Test;
 
 public interface TestService {
 

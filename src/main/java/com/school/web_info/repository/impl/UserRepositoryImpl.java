@@ -1,7 +1,7 @@
 package com.school.web_info.repository.impl;
 
 import com.school.web_info.dto.filter.FilterUser;
-import com.school.web_info.entity.User;
+import com.school.web_info.entity.user.User;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;

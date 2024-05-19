@@ -1,6 +1,6 @@
 package com.school.web_info.repository;
 
-import com.school.web_info.entity.Test;
+import com.school.web_info.entity.test.Test;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.school.web_info.repository;
 
-import com.school.web_info.entity.TimeActivity;
+import com.school.web_info.entity.timeactivity.TimeActivity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
