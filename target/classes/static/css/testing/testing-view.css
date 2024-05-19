@@ -1,0 +1,77 @@
+#body {
+    background: #ebecf4;
+}
+
+.starter-template {
+    display: flex;
+    justify-content: center; /* Выравнивание по центру по горизонтали */
+    align-items: center; /* Выравнивание по центру по вертикали */
+}
+
+#container {
+    margin-top: 1%;
+}
+
+.question-box {
+    border-radius: 20px;
+    clear: left;
+    -webkit-box-shadow: 0px 1px 13px -6px rgba(30, 41, 50, 0.6);
+    -moz-box-shadow: 0px 1px 13px -6px rgba(30, 41, 50, 0.6);
+    box-shadow: 0px 1px 13px -6px rgba(30, 41, 50, 0.6);
+    padding: 10px;
+    width: 100%; /* Ширина прямоугольной области */
+    text-align: center; /* Выравнивание содержимого по центру */
+    margin-bottom: 20px; /* Отступ между прямоугольными областями */
+}
+
+.question {
+    font-weight: bold; /* Жирный шрифт для вопроса */
+    margin-bottom: 10px; /* Отступ между вопросом и кнопками */
+}
+
+.answer-buttons {
+    display: flex;
+    flex-direction: column; /* Отображение кнопок в столбец */
+    align-items: center; /* Выравнивание кнопок по центру по горизонтали */
+}
+
+/*.answer-button {*/
+/*    margin: 5px 0; !* Отступ между кнопками по вертикали *!*/
+/*    width: 200px; !* Ширина кнопки равна ширине родительского элемента *!*/
+/*    font-size: 16px;*/
+/*    font-weight: bold;*/
+/*    text-align: left;*/
+/*    !*font-family: 'New Century Schoolbook', TeX Gyre Schola, serif;*!*/
+/*    -webkit-box-shadow: 0px 0px 21px -2px rgba(53, 158, 239, 0.24);*/
+/*    -moz-box-shadow: 0px 0px 21px -2px rgba(53, 158, 239, 0.24);*/
+/*    box-shadow: 0px 0px 21px -2px rgba(53, 158, 239, 0.24);*/
+/*    border: none;*/
+/*    outline: none;*/
+/*    background: white;*/
+/*    border-radius: 10px;*/
+/*}*/
+
+.answer-button {
+    margin: 5px 0; /* Отступ между кнопками по вертикали */
+    width: 700px; /* Желаемая ширина кнопки */
+    height: auto;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    /*font-family: 'New Century Schoolbook', TeX Gyre Schola, serif;*/
+    -webkit-box-shadow: 0px 0px 21px -2px rgba(53, 158, 239, 0.24);
+    -moz-box-shadow: 0px 0px 21px -2px rgba(53, 158, 239, 0.24);
+    box-shadow: 0px 0px 21px -2px rgba(53, 158, 239, 0.24);
+    border: none;
+    outline: none;
+    background: white;
+    border-radius: 10px;
+}
+
+.selected {
+    background-color: #00C5DB; /* Цвет фона для выбранного ответа */
+}
+
+.correct {
+    background-color: #66ff66; /* Цвет фона для правильного ответа */
+}

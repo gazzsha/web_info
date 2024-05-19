@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="/css/auth/main-auth-view.css">
+        <script type="text/javascript" src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../static/js/auth/login.js"
+                th:src="@{/js/auth/login.js}"></script>
+        <title>Вход</title>
+    </head>
+<body>
+<div class="container">
+    <div class="title">Вход</div>
+    <div class="content">
+        <form action="#">
+            <div class="user-details">
+                <h1>Войдите в систему</h1>
+                <div th:if="${param.error}">
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.logout}">
+                    You have been logged out.
+                </div>
+                <form th:action="@{/school/login}" method="post">
+                    <div class="input-box">
+                        <span class="details">Логин</span>
+                        <input type="text" id="username" placeholder="Введите свое имя и фамилию" required
+                               autocomplete="off">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Пароль</span>
+                        <input type="password" id="password" placeholder="Введите свой пароль" required
+                               autocomplete="off">
+                    </div>
+                    <div class="button" id="login-button">
+                        <input type="button" value="Вход">
+                    </div>
+                    <div class="button" id="auth-button">
+                        <input type="button" value="Регистрация">
+                    </div>
+                </form>
+            </div>
+        </form>
+    </div>
+</div>
+<!--<h1>Please Log In</h1>-->
+<!--<div th:if="${param.error}">-->
+<!--    Invalid username and password.-->
+<!--</div>-->
+<!--<div th:if="${param.logout}">-->
+<!--    You have been logged out.-->
+<!--</div>-->
+<!--<form method="post" th:action="@{/process-login}">-->
+<!--    <div>-->
+<!--        <input name="username" id="username" placeholder="Username" type="text"/>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <input name="password" id="password" placeholder="Password" type="password"/>-->
+<!--    </div>-->
+<!--    <input type="submit" id="login-button" value="Log in"/>-->
+<!--</form>-->
+</body>
+</html>

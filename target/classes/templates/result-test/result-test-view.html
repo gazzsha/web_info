@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/wlogo.css">
+    <link rel="stylesheet" type="text/css" href="/css/result-test/result-test.css">
+    <script type="text/javascript" src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../static/js/result-test/button-logic.js"
+            th:src="@{/js/result-test/button-logic.js}"></script>
+    <title>Title</title>
+</head>
+
+<div th:insert="navbar :: nav-placeholder"></div>
+<body id="body" th:fragment="main-recommendation">
+<br><br>
+
+
+<div role="main" class="container">
+    <div class="starter-template">
+        <div id="container">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" id="user-search" type="search" placeholder="Введите имя или фамилию"
+                       aria-label="Поиск">
+                <button class="form-control mr-sm-2" id="search-button" type="button">Поиск</button>
+            </form>
+            <ul class="navbar-nav mr-auto">
+                <!-- Ваши другие элементы навигационной панели -->
+            </ul>
+            <div th:each="result : ${results}">
+                <div class="card-body">
+                    <h2 class="card-title" th:text="${result.first().name()}"></h2>
+                    <h6 class="card-subtitle mb-2 text-muted"
+                        th:text="${result.first().title()} + ' из ' + ${result.first().countAnswer()} + ' вопросов'"></h6>
+                    <p class="card-text" th:text="${result.first().description()}"></p>
+                    <div class="card" th:each="res : ${result.second()}">
+                        <div class="card-body" th:attr="data-id=${res.user().id()}">
+                            <h5 class="card-title" th:text="${res.user().name()} + ' ' + ${res.user().lastName()}"></h5>
+                            <h6 class="card-subtitle mb-2 text-muted" th:text="'Почта: ' + ${res.user().email()}"></h6>
+                            <p class="card-text">
+                                Правильных ответов: <strong th:text="${res.countTrueAnswer()}"></strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

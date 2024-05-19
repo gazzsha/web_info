@@ -1,0 +1,62 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-1" author="Rysaev Aydar">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="questionnaire"/>
+            </not>
+        </preConditions>
+        <createTable tableName="questionnaire">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="questionnaire_users_fk"
+                             referencedTableName="users"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="surname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birthday" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="faculty_id" type="bigint">
+                <constraints foreignKeyName="questionnaire_faculty_fk"
+                             referencedTableName="faculty"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="city" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="educational_institution_id" type="bigint">
+                <constraints foreignKeyName="questionnaire_educational_institution_fk"
+                             referencedTableName="educational_institution"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="admission_id" type="bigint">
+                <constraints foreignKeyName="questionnaire_admission_fk"
+                             referencedTableName="admission"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="knowledge_level_c++" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="knowledge_level_python" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="knowledge_level_java" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="knowledge_level_c#" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="knowledge_level_sql" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

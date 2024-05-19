@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/wlogo.css">
+    <link rel="stylesheet" type="text/css" href="/css/profile/profile-user.css">
+    <script type="text/javascript" src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../static/js/profile/user-page.js"
+            th:src="@{/js/profile/user-page.js}"></script>
+    <title>Profile</title>
+</head>
+
+<div th:insert="navbar :: nav-placeholder"></div>
+<body id="body" th:fragment="main-recommendation">
+<br><br>
+
+
+<div class="container">
+    <div class="title">Профиль</div>
+    <div class="content">
+        <form action="#">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Имя</span>
+                    <input type="text" id="name" readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Фамилия</span>
+                    <input type="text" id="lastname" readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Отчество</span>
+                    <input type="text" id="surname" placeholder="Введите свое отчество" required autocomplete="off">
+                </div>
+                <div class="input-box">
+                    <span class="details">Дата рождения</span>
+                    <input type="date" id="birthday" readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Факультет</span>
+                    <input type="text" id="faculty" readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Закончил(а)</span>
+                    <input type="text" id="institution" readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Город</span>
+                    <input type="text" id="city" readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Поступил(а)</span>
+                    <input type="text" id="admission" readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Уровень знаний C++</span>
+                    <input type="text" id="cpp" readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Уровень знаний C#</span>
+                    <input type="text" id="csharp" readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Уровень знаний Python</span>
+                    <input type="text" id="python" readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Уровень знаний Java</span>
+                    <input type="text" id="java" readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Уровень знаний Sql</span>
+                    <input type="text" id="sql" readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Пройденные тесты</span>
+                    <ul id="passedTestsList"></ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

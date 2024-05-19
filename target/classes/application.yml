@@ -1,0 +1,63 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  datasource:
+    url:
+      jdbc:postgresql://${app.db.postgres.host}:${app.db.postgres.port}/${app.db.postgres.database}?characterEncoding=UTF-8&useSSL=false
+    username: ${app.db.postgres.user}
+    password: ${app.db.postgres.password}
+    hikari:
+      connection-timeout: 3000
+  data:
+    mongodb:
+      database: ${app.db.mongo.database}
+      port: ${app.db.mongo.port}
+      host: ${app.db.mongo.host}
+#      username: ${app.db.mongo.username}
+#      password: ${app.db.mongo.password}
+#      uri: ${app.db.mongo.uri}
+  liquibase:
+    enabled: ${app.db.postgres.liquibase.enabled}
+    change-log: ${app.db.postgres.liquibase.changelog}
+    default-schema: ${app.db.postgres.liquibase.liquibaseSchema}
+  #  thymeleaf:
+  #    prefix:
+  #      classpath: /templates/
+  #      suffix: .html
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+#    hibernate.ddl-auto: validate
+logging:
+  level:
+    root: INFO
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.transaction: DEBUG
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.security: DEBUG
+server:
+  port: ${APPLICATION_PORT}
+
+app:
+  db:
+    postgres:
+      driver: org.postgresql.Driver
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      database: ${POSTGRES_DB}
+      user: ${POSTGRES_USERNAME}
+      password: ${POSTGRES_PASSWORD}
+      liquibase:
+        changelog: classpath:db/changelog/main-changelog.xml
+        enabled: false
+        liquibaseSchema: public
+    mongo:
+#      username: ${MONGO_USERNAME}
+#      password: ${MONGO_PASSWORD}
+      host: ${MONGO_HOST}
+      port: ${MONGO_PORT}
+      database: ${MONGO_DB}
+#      uri: mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}?authSource=admin
